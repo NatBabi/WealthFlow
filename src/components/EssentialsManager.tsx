@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { useApp } from '@/lib/store';
 import { CATEGORY_CONFIG, type Category } from '@/lib/types';
 import { formatCurrency, formatDate } from '@/lib/utils';
+import { Home, AlertTriangle, ClipboardList, Trash2 } from 'lucide-react';
 
 const SUBCATEGORIES: Record<Category, string[]> = {
   growth: ['Index Fund', 'Real Estate', 'Skills', 'Stock', 'Crypto', 'Other Investment'],
@@ -74,7 +75,7 @@ export default function EssentialsManager() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">🏠 Essentials & Transactions</h1>
+            <h1 className="page-title flex items-center gap-2"><Home className="w-8 h-8 text-[#38bdf8]" /> Essentials & Transactions</h1>
             <p className="page-subtitle">50% of income — Feeds you, not your ego</p>
           </div>
           <button className="btn btn-primary" onClick={() => setShowAdd(!showAdd)}>
@@ -128,7 +129,7 @@ export default function EssentialsManager() {
                   setTxSubcategory(SUBCATEGORIES[cat][0]);
                 }}>
                   {(['growth', 'stability', 'essentials', 'rewards'] as Category[]).map((cat) => (
-                    <option key={cat} value={cat}>{CATEGORY_CONFIG[cat].emoji} {CATEGORY_CONFIG[cat].label}</option>
+                    <option key={cat} value={cat}>{CATEGORY_CONFIG[cat].label}</option>
                   ))}
                 </select>
               </div>
@@ -182,7 +183,7 @@ export default function EssentialsManager() {
             padding: '20px',
           }}>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-              <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+              <div className="text-red-500"><AlertTriangle className="w-8 h-8" /></div>
               <div>
                 <div style={{ fontWeight: 700, marginBottom: '4px', color: 'var(--danger)' }}>Lifestyle Creep Alert</div>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
@@ -203,10 +204,10 @@ export default function EssentialsManager() {
               {(['all', 'growth', 'stability', 'essentials', 'rewards'] as const).map((cat) => (
                 <button
                   key={cat}
-                  className={`tab ${filterCategory === cat ? 'active' : ''}`}
+                  className={`tab flex items-center gap-2 ${filterCategory === cat ? 'active' : ''}`}
                   onClick={() => setFilterCategory(cat)}
                 >
-                  {cat === 'all' ? 'All' : CATEGORY_CONFIG[cat].emoji}
+                  {cat === 'all' ? 'All' : (() => { const Icon = CATEGORY_CONFIG[cat].icon; return <Icon className="w-4 h-4" />; })()}
                 </button>
               ))}
             </div>
@@ -214,7 +215,7 @@ export default function EssentialsManager() {
 
           {filteredTransactions.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-state-icon">📝</div>
+              <div className="empty-state-icon"><ClipboardList className="w-8 h-8 opacity-50" /></div>
               <div className="empty-state-title">No transactions</div>
               <div className="empty-state-text">
                 Add your first transaction to start tracking spending against the 25/15/50/10 rule.
@@ -227,7 +228,7 @@ export default function EssentialsManager() {
                 return (
                   <div key={tx.id} className="transaction-item">
                     <div className="transaction-icon" style={{ background: `var(--${tx.category}-dim)`, color: `var(--${tx.category})` }}>
-                      {config.emoji}
+                      <config.icon className="w-5 h-5" />
                     </div>
                     <div className="transaction-details">
                       <div className="transaction-name">{tx.description}</div>
@@ -237,7 +238,7 @@ export default function EssentialsManager() {
                       -{formatCurrency(tx.amount, sym)}
                     </div>
                     <button className="btn btn-sm btn-ghost" onClick={() => dispatch({ type: 'DELETE_TRANSACTION', payload: tx.id })}>
-                      🗑️
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 );
