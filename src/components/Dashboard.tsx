@@ -8,6 +8,7 @@ import React from 'react';
 import { useApp, useAllocations } from '@/lib/store';
 import { CATEGORY_CONFIG, type Category } from '@/lib/types';
 import { formatCurrency, getCurrentMonth, getDaysRemaining, getMonthProgress, calculateWealthScore } from '@/lib/utils';
+import { Diamond, ClipboardList, Check, AlertCircle } from 'lucide-react';
 
 export default function Dashboard() {
   const { state, dispatch } = useApp();
@@ -91,15 +92,15 @@ export default function Dashboard() {
                 style={{ animationDelay: `${index * 0.1}s`, cursor: 'pointer' }}
                 onClick={() => dispatch({ type: 'SET_TAB', payload: cat === 'rewards' ? 'rewards' : cat })}
               >
-                <div className={`stat-icon ${cat}`}>{config.emoji}</div>
-                <div className="stat-label">{config.label} ({user.allocations[cat]}%)</div>
+                <div className={`stat-icon ${cat}`}><config.icon className="w-5 h-5" /></div>
+                <div className="stat-label">{config.label} <span style={{ opacity: 0.5 }}>(Target: {user.allocations[cat]}%)</span></div>
                 <div className="stat-amount" style={{ color: config.color }}>
                   {formatCurrency(allocated, sym)}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
                   <span className="stat-percent">Spent: {formatCurrency(spent, sym)}</span>
-                  <span className={`card-change ${remaining >= 0 ? 'positive' : 'negative'}`}>
-                    {remaining >= 0 ? '✓' : '!'} {formatCurrency(Math.abs(remaining), sym)}
+                  <span className={`card-change flex items-center gap-1 ${remaining >= 0 ? 'positive' : 'negative'}`}>
+                    {remaining >= 0 ? <Check className="w-3 h-3" /> : <AlertCircle className="w-3 h-3" />} {formatCurrency(Math.abs(remaining), sym)}
                   </span>
                 </div>
                 {/* Mini progress bar */}
@@ -133,10 +134,10 @@ export default function Dashboard() {
                     cumulativePercent += percent;
 
                     const colorMap: Record<string, string> = {
-                      growth: '#00d4aa',
-                      stability: '#6366f1',
-                      essentials: '#f59e0b',
-                      rewards: '#ec4899',
+                      growth: 'var(--growth)',
+                      stability: 'var(--stability)',
+                      essentials: 'var(--essentials)',
+                      rewards: 'var(--rewards)',
                     };
 
                     return (
@@ -163,10 +164,10 @@ export default function Dashboard() {
                 {categories.map((cat) => {
                   const config = CATEGORY_CONFIG[cat];
                   const colorMap: Record<string, string> = {
-                    growth: '#00d4aa',
-                    stability: '#6366f1',
-                    essentials: '#f59e0b',
-                    rewards: '#ec4899',
+                    growth: 'var(--growth)',
+                    stability: 'var(--stability)',
+                    essentials: 'var(--essentials)',
+                    rewards: 'var(--rewards)',
                   };
                   return (
                     <div key={cat} className="legend-item">
@@ -184,8 +185,8 @@ export default function Dashboard() {
           <div className="card chart-container">
             <div className="card-header">
               <span className="card-title">Wealth Score</span>
-              <span className={`card-change ${wealthScore >= 50 ? 'positive' : 'negative'}`}>
-                {wealthScore >= 75 ? 'Excellent' : wealthScore >= 50 ? 'Good' : 'Needs Work'}
+              <span className={`card-change ${wealthScore >= 50 ? 'positive' : wealthScore === 0 ? '' : 'negative'}`} style={wealthScore === 0 ? { color: 'var(--text-tertiary)' } : undefined}>
+                {wealthScore >= 75 ? 'Excellent' : wealthScore >= 50 ? 'Good' : wealthScore === 0 ? 'Getting Started' : 'Needs Work'}
               </span>
             </div>
             <div className="wealth-score">
@@ -209,8 +210,10 @@ export default function Dashboard() {
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                  Your wealth score measures how closely you follow the 25/15/50/10 allocation rule. 
-                  Add transactions to track your progress!
+                  {wealthScore === 0 
+                    ? 'Welcome! Start logging transactions to see your wealth score come alive. Every step counts toward financial freedom.'
+                    : 'Your wealth score measures how closely you follow the 25/15/50/10 allocation rule. Add transactions to track your progress!'
+                  }
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem' }}>
@@ -228,17 +231,18 @@ export default function Dashboard() {
 
         {/* Ownership Quote */}
         <div className="card" style={{ 
-          background: 'linear-gradient(135deg, rgba(0,212,170,0.05), rgba(99,102,241,0.05))',
-          borderColor: 'rgba(0,212,170,0.15)',
+          background: 'var(--bg-card)',
+          borderColor: 'var(--surface-border)',
           textAlign: 'center',
           padding: '32px',
           marginBottom: '24px'
         }}>
-          <div style={{ fontSize: '2rem', marginBottom: '12px' }}>💎</div>
+          <div className="flex justify-center mb-3" style={{ color: 'var(--danger)' }}><Diamond className="w-6 h-6" /></div>
           <blockquote style={{ 
             fontSize: '1.1rem', 
             fontWeight: 600, 
             color: 'var(--text-primary)',
+            fontFamily: 'var(--font-serif)',
             fontStyle: 'italic',
             maxWidth: '600px',
             margin: '0 auto 12px',
@@ -262,7 +266,7 @@ export default function Dashboard() {
 
           {currentMonthTx.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-state-icon">📝</div>
+              <div className="empty-state-icon"><ClipboardList className="w-8 h-8 opacity-50" /></div>
               <div className="empty-state-title">No transactions yet</div>
               <div className="empty-state-text">
                 Start logging your spending to see how you&apos;re tracking against the 25/15/50/10 rule.
@@ -275,7 +279,7 @@ export default function Dashboard() {
                 return (
                   <div key={tx.id} className="transaction-item">
                     <div className={`transaction-icon`} style={{ background: `var(--${tx.category}-dim)`, color: `var(--${tx.category})` }}>
-                      {config.emoji}
+                      <config.icon className="w-5 h-5" />
                     </div>
                     <div className="transaction-details">
                       <div className="transaction-name">{tx.description}</div>
