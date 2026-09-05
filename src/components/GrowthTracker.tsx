@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { useApp } from '@/lib/store';
 import { GROWTH_ASSET_TYPES, type GrowthAssetType } from '@/lib/types';
 import { formatCurrency, calculateCompoundGrowth } from '@/lib/utils';
+import { Rocket, Sprout, CircleAlert, CircleSlash, Flame, Star, Trash2 } from 'lucide-react';
 
 export default function GrowthTracker() {
   const { state, dispatch } = useApp();
@@ -70,7 +71,7 @@ export default function GrowthTracker() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">🚀 Growth Tracker</h1>
+            <h1 className="page-title flex items-center gap-2"><Rocket className="w-8 h-8 text-[#00d4aa]" /> Growth Tracker</h1>
             <p className="page-subtitle">25% of income — Money that works for you</p>
           </div>
           <div style={{ textAlign: 'right' }}>
@@ -153,7 +154,7 @@ export default function GrowthTracker() {
                 fontSize: '0.72rem',
                 color: 'var(--text-secondary)',
               }}>
-                {info.emoji} {info.label}
+                <info.icon className="w-3 h-3 inline-block mr-1" /> {info.label}
               </div>
             ))}
           </div>
@@ -179,7 +180,7 @@ export default function GrowthTracker() {
                   <label className="form-label">Type</label>
                   <select className="form-input form-select" value={assetType} onChange={(e) => setAssetType(e.target.value as GrowthAssetType)}>
                     {Object.entries(GROWTH_ASSET_TYPES).map(([key, info]) => (
-                      <option key={key} value={key}>{info.emoji} {info.label}</option>
+                      <option key={key} value={key}>{info.label}</option>
                     ))}
                   </select>
                 </div>
@@ -200,7 +201,7 @@ export default function GrowthTracker() {
 
           {growthAssets.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-state-icon">🌱</div>
+              <div className="empty-state-icon"><Sprout className="w-8 h-8 opacity-50" /></div>
               <div className="empty-state-title">No assets yet</div>
               <div className="empty-state-text">
                 Start with index funds — buy a slice of the whole market. You don&apos;t need to pick winners.
@@ -226,7 +227,7 @@ export default function GrowthTracker() {
                     const gain = asset.currentValue - asset.investedAmount;
                     return (
                       <tr key={asset.id}>
-                        <td style={{ fontWeight: 600 }}>{typeInfo.emoji} {asset.name}</td>
+                        <td style={{ fontWeight: 600 }} className="flex items-center gap-2"><typeInfo.icon className="w-4 h-4 text-[#00d4aa]" /> {asset.name}</td>
                         <td><span className="tag growth">{typeInfo.label}</span></td>
                         <td className="mono">{formatCurrency(asset.investedAmount, sym)}</td>
                         <td className="mono">
@@ -236,10 +237,16 @@ export default function GrowthTracker() {
                           </span>
                         </td>
                         <td className="mono">{formatCurrency(asset.monthlyContribution, sym)}</td>
-                        <td>{'🟢🟡🟠🔴💥'[asset.riskLevel - 1]}</td>
+                        <td>
+                          {asset.riskLevel === 1 && <div className="w-3 h-3 rounded-full bg-[#00d4aa]" />}
+                          {asset.riskLevel === 2 && <div className="w-3 h-3 rounded-full bg-[#22c55e]" />}
+                          {asset.riskLevel === 3 && <div className="w-3 h-3 rounded-full bg-[#f59e0b]" />}
+                          {asset.riskLevel === 4 && <div className="w-3 h-3 rounded-full bg-[#f97316]" />}
+                          {asset.riskLevel === 5 && <div className="w-3 h-3 rounded-full bg-[#ef4444]" />}
+                        </td>
                         <td>
                           <button className="btn btn-sm btn-ghost" onClick={() => dispatch({ type: 'DELETE_GROWTH_ASSET', payload: asset.id })}>
-                            🗑️
+                            <Trash2 className="w-4 h-4" />
                           </button>
                         </td>
                       </tr>
