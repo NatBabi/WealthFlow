@@ -6,6 +6,7 @@
 
 import React, { useState } from 'react';
 import { type ImpulseCheck } from '@/lib/types';
+import { HelpCircle, ShoppingCart, Hourglass, Tag, Sparkles, CheckCircle, XCircle } from 'lucide-react';
 
 export default function ImpulseDecisionTree() {
   const [check, setCheck] = useState<ImpulseCheck>({ step: 'start' });
@@ -17,7 +18,7 @@ export default function ImpulseDecisionTree() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">🤔 Purchase Decision Tool</h1>
+            <h1 className="page-title flex items-center gap-2"><HelpCircle className="w-8 h-8 text-indigo-400" /> Purchase Decision Tool</h1>
             <p className="page-subtitle">Use rules, not willpower</p>
           </div>
           <button className="btn btn-secondary" onClick={reset}>
@@ -31,7 +32,7 @@ export default function ImpulseDecisionTree() {
           
           {check.step === 'start' && (
             <div className="decision-node">
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🛒</div>
+              <div className="flex justify-center mb-4 text-indigo-400"><ShoppingCart className="w-12 h-12" /></div>
               <h3 className="decision-question">Is this an impulse purchase?</h3>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '24px' }}>
                 Something you just saw and suddenly wanted to buy, rather than a planned expense.
@@ -53,7 +54,7 @@ export default function ImpulseDecisionTree() {
 
           {check.step === 'impulse' && (
             <div className="decision-node">
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>⏳</div>
+              <div className="flex justify-center mb-4 text-indigo-400"><Hourglass className="w-12 h-12" /></div>
               <h3 className="decision-question">The 7-Day Rule</h3>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '24px' }}>
                 Wait exactly 7 days. Often the excitement fades and you forget about it entirely. Have 7 days passed?
@@ -75,7 +76,7 @@ export default function ImpulseDecisionTree() {
 
           {check.step === 'seven-day' && (
             <div className="decision-node">
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🤔</div>
+              <div className="flex justify-center mb-4 text-indigo-400"><HelpCircle className="w-12 h-12" /></div>
               <h3 className="decision-question">Do you still want it?</h3>
               <div className="decision-options" style={{ marginTop: '24px' }}>
                 <button className="decision-btn yes" onClick={() => setCheck({ step: 'brand-value' })}>
@@ -94,7 +95,7 @@ export default function ImpulseDecisionTree() {
 
           {check.step === 'brand-value' && (
             <div className="decision-node">
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🏷️</div>
+              <div className="flex justify-center mb-4 text-indigo-400"><Tag className="w-12 h-12" /></div>
               <h3 className="decision-question">Are you buying for the brand or the value?</h3>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '24px', textAlign: 'left' }}>
                 <strong>Value:</strong> A $60 pair of boots worn 100 times = $0.60 per wear.<br/><br/>
@@ -117,7 +118,7 @@ export default function ImpulseDecisionTree() {
 
           {check.step === 'improve-life' && (
             <div className="decision-node">
-              <div style={{ fontSize: '3rem', marginBottom: '16px' }}>✨</div>
+              <div className="flex justify-center mb-4 text-indigo-400"><Sparkles className="w-12 h-12" /></div>
               <h3 className="decision-question">Will this truly improve your life?</h3>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '24px' }}>
                 Be honest. Is it a conscious, intentional purchase, or just killing boredom / chasing a dopamine hit?
@@ -143,8 +144,8 @@ export default function ImpulseDecisionTree() {
 
           {check.step === 'result' && (
             <div className={`decision-result ${check.result}`}>
-              <div style={{ fontSize: '4rem', marginBottom: '16px' }}>
-                {check.result === 'buy' ? '✅' : '❌'}
+              <div className="flex justify-center mb-4">
+                {check.result === 'buy' ? <CheckCircle className="w-16 h-16 text-green-500" /> : <XCircle className="w-16 h-16 text-red-500" />}
               </div>
               <h2 style={{ marginBottom: '8px' }}>
                 {check.result === 'buy' ? 'Go ahead and buy it' : 'Do not buy it'}
