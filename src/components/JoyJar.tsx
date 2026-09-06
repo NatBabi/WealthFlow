@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import { useApp } from '@/lib/store';
 import { formatCurrency, formatDate } from '@/lib/utils';
+import { PartyPopper, Plane, Palette, Wine, Gift, Ticket, Trash2 } from 'lucide-react';
 
 export default function JoyJar() {
   const { state, dispatch } = useApp();
@@ -22,10 +23,10 @@ export default function JoyJar() {
   const [spendDesc, setSpendDesc] = useState('');
 
   const categories = [
-    { id: 'vacations', label: '✈️ Vacations', desc: 'Buy memories that last forever' },
-    { id: 'hobbies', label: '🎨 Hobbies', desc: 'Keep yourself passionate' },
-    { id: 'nights-out', label: '🍻 Nights Out', desc: 'Maintain strong social networks' },
-    { id: 'gifts', label: '🎁 Gifts', desc: 'Strengthen relationships' },
+    { id: 'vacations', label: 'Vacations', icon: <Plane className="w-5 h-5" />, desc: 'Buy memories that last forever' },
+    { id: 'hobbies', label: 'Hobbies', icon: <Palette className="w-5 h-5" />, desc: 'Keep yourself passionate' },
+    { id: 'nights-out', label: 'Nights Out', icon: <Wine className="w-5 h-5" />, desc: 'Maintain strong social networks' },
+    { id: 'gifts', label: 'Gifts', icon: <Gift className="w-5 h-5" />, desc: 'Strengthen relationships' },
   ];
 
   const handleSpend = () => {
@@ -51,7 +52,7 @@ export default function JoyJar() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">🎉 Joy Jar</h1>
+            <h1 className="page-title flex items-center gap-2"><PartyPopper className="w-8 h-8 text-[#ec4899]" /> Joy Jar</h1>
             <p className="page-subtitle">10% of income — Guilt-free rewards that keep you sane</p>
           </div>
           <div style={{ textAlign: 'right' }}>
@@ -136,8 +137,8 @@ export default function JoyJar() {
                         textAlign: 'center'
                       }}
                     >
-                      <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{c.label.split(' ')[0]}</div>
-                      <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{c.label.split(' ').slice(1).join(' ')}</div>
+                      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px', color: spendCategory === c.id ? 'var(--rewards)' : 'inherit' }}>{c.icon}</div>
+                      <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>{c.label}</div>
                     </div>
                   ))}
                 </div>
@@ -171,7 +172,7 @@ export default function JoyJar() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
           {categories.map((cat) => (
             <div key={cat.id} className="card" style={{ padding: '20px' }}>
-              <div style={{ fontWeight: 700, marginBottom: '8px' }}>{cat.label}</div>
+              <div style={{ fontWeight: 700, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>{cat.icon} {cat.label}</div>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', lineHeight: 1.5 }}>
                 {cat.desc}
               </div>
@@ -187,7 +188,7 @@ export default function JoyJar() {
           
           {joyJar.spending.length === 0 ? (
              <div className="empty-state">
-             <div className="empty-state-icon">🎟️</div>
+             <div className="empty-state-icon"><Ticket className="w-8 h-8 opacity-50" /></div>
              <div className="empty-state-title">No rewards logged yet</div>
              <div className="empty-state-text">
                Remember to reward yourself. 92% of people overspend after intensive saving sprints because saving without joy feels like punishment.
@@ -200,17 +201,17 @@ export default function JoyJar() {
                 return (
                   <div key={s.id} className="transaction-item">
                     <div className="transaction-icon" style={{ background: 'var(--rewards-dim)', color: 'var(--rewards)' }}>
-                      {catLabel.split(' ')[0]}
+                      {categories.find(c => c.id === s.category)?.icon || <PartyPopper className="w-4 h-4" />}
                     </div>
                     <div className="transaction-details">
                       <div className="transaction-name">{s.description}</div>
-                      <div className="transaction-category">{catLabel.split(' ').slice(1).join(' ')} · {formatDate(s.date)}</div>
+                      <div className="transaction-category">{catLabel} · {formatDate(s.date)}</div>
                     </div>
                     <div className="transaction-amount expense">
                       -{formatCurrency(s.amount, sym)}
                     </div>
                     <button className="btn btn-sm btn-ghost" onClick={() => dispatch({ type: 'DELETE_JOY_SPENDING', payload: s.id })}>
-                      🗑️
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 );
