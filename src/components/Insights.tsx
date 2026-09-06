@@ -5,6 +5,7 @@
 'use client';
 
 import React from 'react';
+import { Lightbulb } from 'lucide-react';
 
 export default function Insights() {
   return (
@@ -12,7 +13,7 @@ export default function Insights() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">💡 The 1% Philosophy</h1>
+            <h1 className="page-title flex items-center gap-2"><Lightbulb className="w-8 h-8 text-yellow-400" /> The 1% Philosophy</h1>
             <p className="page-subtitle">Understand how wealth is actually built</p>
           </div>
         </div>
