@@ -7,6 +7,7 @@
 import React from 'react';
 import { useApp } from '@/lib/store';
 import { CURRENCIES } from '@/lib/types';
+import { Settings as SettingsIcon } from 'lucide-react';
 
 export default function Settings() {
   const { state, dispatch } = useApp();
@@ -40,7 +41,7 @@ export default function Settings() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">⚙️ Settings</h1>
+            <h1 className="page-title flex items-center gap-2"><SettingsIcon className="w-8 h-8 text-gray-400" /> Settings</h1>
             <p className="page-subtitle">Manage your profile and data</p>
           </div>
         </div>
