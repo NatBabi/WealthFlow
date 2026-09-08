@@ -6,27 +6,28 @@
 
 import React from 'react';
 import { useApp } from '@/lib/store';
+import { LayoutDashboard, Rocket, Shield, Home, PartyPopper, TrendingUp, HelpCircle, Lightbulb, Settings } from 'lucide-react';
 
 interface NavItem {
   id: string;
   label: string;
-  emoji: string;
+  icon: React.ElementType;
   badge?: string;
 }
 
 const mainNavItems: NavItem[] = [
-  { id: 'dashboard', label: 'Dashboard', emoji: '📊' },
-  { id: 'growth', label: 'Growth (25%)', emoji: '🚀' },
-  { id: 'stability', label: 'Stability (15%)', emoji: '🛡️' },
-  { id: 'essentials', label: 'Essentials (50%)', emoji: '🏠' },
-  { id: 'rewards', label: 'Joy Jar (10%)', emoji: '🎉' },
+  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'growth', label: 'Growth (25%)', icon: Rocket },
+  { id: 'stability', label: 'Stability (15%)', icon: Shield },
+  { id: 'essentials', label: 'Essentials (50%)', icon: Home },
+  { id: 'rewards', label: 'Joy Jar (10%)', icon: PartyPopper },
 ];
 
 const toolsNavItems: NavItem[] = [
-  { id: 'compound', label: 'Compound Calculator', emoji: '📈' },
-  { id: 'impulse', label: 'Purchase Decision', emoji: '🤔' },
-  { id: 'insights', label: 'Insights', emoji: '💡' },
-  { id: 'settings', label: 'Settings', emoji: '⚙️' },
+  { id: 'compound', label: 'Compound Calculator', icon: TrendingUp },
+  { id: 'impulse', label: 'Purchase Decision', icon: HelpCircle },
+  { id: 'insights', label: 'Insights', icon: Lightbulb },
+  { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
 export default function Sidebar({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
@@ -68,7 +69,7 @@ export default function Sidebar({ isOpen, onToggle }: { isOpen: boolean; onToggl
               className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
               onClick={() => handleNav(item.id)}
             >
-              <span className="nav-icon">{item.emoji}</span>
+              <span className="nav-icon"><item.icon className="w-5 h-5" /></span>
               <span>{item.label}</span>
               {item.badge && <span className="nav-badge">{item.badge}</span>}
             </div>
@@ -83,7 +84,7 @@ export default function Sidebar({ isOpen, onToggle }: { isOpen: boolean; onToggl
               className={`nav-item ${activeTab === item.id ? 'active' : ''}`}
               onClick={() => handleNav(item.id)}
             >
-              <span className="nav-icon">{item.emoji}</span>
+              <span className="nav-icon"><item.icon className="w-5 h-5" /></span>
               <span>{item.label}</span>
             </div>
           ))}
