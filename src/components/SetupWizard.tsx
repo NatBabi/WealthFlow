@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import { useApp } from '@/lib/store';
 import { CURRENCIES, type AllocationConfig } from '@/lib/types';
+import { Wallet, PieChart, Target, Rocket, Shield, Home, PartyPopper, ChevronRight } from 'lucide-react';
 
 export default function SetupWizard() {
   const { dispatch } = useApp();
@@ -75,7 +76,7 @@ export default function SetupWizard() {
       {/* Step 1: Profile */}
       {step === 1 && (
         <div className="setup-step">
-          <h2 className="setup-title">Welcome to WealthFlow 💰</h2>
+          <h2 className="setup-title flex items-center gap-2"><Wallet className="w-8 h-8 text-green-400" /> Welcome to WealthFlow</h2>
           <p className="setup-subtitle">
             Let&apos;s set up your financial dashboard using the 25/15/50/10 rule. 
             If you don&apos;t own something, you are what&apos;s owned.
@@ -139,7 +140,7 @@ export default function SetupWizard() {
       {/* Step 2: Allocation */}
       {step === 2 && (
         <div className="setup-step">
-          <h2 className="setup-title">Your Money Split 📐</h2>
+          <h2 className="setup-title flex items-center gap-2"><PieChart className="w-8 h-8 text-indigo-400" /> Your Money Split</h2>
           <p className="setup-subtitle">
             The default 25/15/50/10 split is recommended, but you can customize it. 
             Total must equal 100%.
@@ -155,7 +156,7 @@ export default function SetupWizard() {
             </div>
 
             <div className="allocation-slider">
-              <label>🚀 Growth</label>
+              <label className="flex items-center gap-2"><Rocket className="w-4 h-4" /> Growth</label>
               <input
                 type="range"
                 min="5"
@@ -170,7 +171,7 @@ export default function SetupWizard() {
             </div>
 
             <div className="allocation-slider">
-              <label>🛡️ Stability</label>
+              <label className="flex items-center gap-2"><Shield className="w-4 h-4" /> Stability</label>
               <input
                 type="range"
                 min="5"
@@ -185,7 +186,7 @@ export default function SetupWizard() {
             </div>
 
             <div className="allocation-slider">
-              <label>🏠 Essentials</label>
+              <label className="flex items-center gap-2"><Home className="w-4 h-4" /> Essentials</label>
               <input
                 type="range"
                 min="20"
@@ -200,7 +201,7 @@ export default function SetupWizard() {
             </div>
 
             <div className="allocation-slider">
-              <label>🎉 Rewards</label>
+              <label className="flex items-center gap-2"><PartyPopper className="w-4 h-4" /> Rewards</label>
               <input
                 type="range"
                 min="5"
@@ -269,7 +270,7 @@ export default function SetupWizard() {
       {/* Step 3: Summary */}
       {step === 3 && (
         <div className="setup-step">
-          <h2 className="setup-title">You&apos;re All Set! 🎯</h2>
+          <h2 className="setup-title flex items-center gap-2"><Target className="w-8 h-8 text-red-400" /> You&apos;re All Set!</h2>
           <p className="setup-subtitle">
             Here&apos;s your personalized wealth plan. Remember: it&apos;s not about how much money you make — it&apos;s about how you manage what you make.
           </p>
@@ -286,13 +287,13 @@ export default function SetupWizard() {
 
             <div style={{ display: 'grid', gap: '12px' }}>
               {[
-                { key: 'growth' as const, emoji: '🚀', label: 'Growth', color: 'var(--growth)', dim: 'var(--growth-dim)' },
-                { key: 'stability' as const, emoji: '🛡️', label: 'Stability', color: 'var(--stability)', dim: 'var(--stability-dim)' },
-                { key: 'essentials' as const, emoji: '🏠', label: 'Essentials', color: 'var(--essentials)', dim: 'var(--essentials-dim)' },
-                { key: 'rewards' as const, emoji: '🎉', label: 'Rewards', color: 'var(--rewards)', dim: 'var(--rewards-dim)' },
+                { key: 'growth' as const, icon: <Rocket className="w-6 h-6" />, label: 'Growth', color: 'var(--growth)', dim: 'var(--growth-dim)' },
+                { key: 'stability' as const, icon: <Shield className="w-6 h-6" />, label: 'Stability', color: 'var(--stability)', dim: 'var(--stability-dim)' },
+                { key: 'essentials' as const, icon: <Home className="w-6 h-6" />, label: 'Essentials', color: 'var(--essentials)', dim: 'var(--essentials-dim)' },
+                { key: 'rewards' as const, icon: <PartyPopper className="w-6 h-6" />, label: 'Rewards', color: 'var(--rewards)', dim: 'var(--rewards-dim)' },
               ].map((cat) => (
-                <div key={cat.key} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: cat.dim, borderRadius: '12px' }}>
-                  <span style={{ fontSize: '1.5rem' }}>{cat.emoji}</span>
+                <div key={cat.key} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: cat.dim, borderRadius: '12px', color: cat.color }}>
+                  {cat.icon}
                   <div style={{ flex: 1 }}>
                     <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{cat.label}</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>{allocations[cat.key]}% of income</div>
@@ -310,11 +311,11 @@ export default function SetupWizard() {
               ← Back
             </button>
             <button
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary btn-lg flex items-center justify-center gap-2"
               style={{ flex: 1 }}
               onClick={handleComplete}
             >
-              Start Building Wealth 🚀
+              Start Building Wealth <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
