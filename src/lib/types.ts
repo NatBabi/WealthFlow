@@ -2,6 +2,8 @@
 // WealthFlow — Type Definitions
 // ============================================
 
+import { LucideIcon, Rocket, Shield, Home, Gift, TrendingUp, Building, Brain, Laptop, LineChart, Bitcoin, Palette } from 'lucide-react';
+
 export type Category = 'growth' | 'stability' | 'essentials' | 'rewards';
 
 export type GrowthAssetType =
@@ -96,7 +98,7 @@ export interface ImpulseCheck {
 
 export const CATEGORY_CONFIG: Record<Category, {
   label: string;
-  emoji: string;
+  icon: LucideIcon;
   color: string;
   gradient: string;
   description: string;
@@ -104,7 +106,7 @@ export const CATEGORY_CONFIG: Record<Category, {
 }> = {
   growth: {
     label: 'Growth',
-    emoji: '🚀',
+    icon: Rocket,
     color: 'var(--growth)',
     gradient: 'var(--gradient-growth)',
     description: 'Money that works for you',
@@ -112,7 +114,7 @@ export const CATEGORY_CONFIG: Record<Category, {
   },
   stability: {
     label: 'Stability',
-    emoji: '🛡️',
+    icon: Shield,
     color: 'var(--stability)',
     gradient: 'var(--gradient-stability)',
     description: 'Keeps you in the game',
@@ -120,7 +122,7 @@ export const CATEGORY_CONFIG: Record<Category, {
   },
   essentials: {
     label: 'Essentials',
-    emoji: '🏠',
+    icon: Home,
     color: 'var(--essentials)',
     gradient: 'var(--gradient-essentials)',
     description: 'Feeds you, not your ego',
@@ -128,7 +130,7 @@ export const CATEGORY_CONFIG: Record<Category, {
   },
   rewards: {
     label: 'Rewards',
-    emoji: '🎉',
+    icon: Gift,
     color: 'var(--rewards)',
     gradient: 'var(--gradient-rewards)',
     description: 'Keeps you sane',
@@ -138,55 +140,55 @@ export const CATEGORY_CONFIG: Record<Category, {
 
 export const GROWTH_ASSET_TYPES: Record<GrowthAssetType, {
   label: string;
-  emoji: string;
+  icon: LucideIcon;
   riskLevel: number;
   description: string;
 }> = {
   'index-fund': {
     label: 'Index Funds',
-    emoji: '📊',
+    icon: TrendingUp,
     riskLevel: 1,
     description: 'Buy a slice of the whole market',
   },
   'real-estate': {
     label: 'Real Estate',
-    emoji: '🏠',
+    icon: Home,
     riskLevel: 2,
     description: 'Rental property investments',
   },
   'reit': {
     label: 'REITs',
-    emoji: '🏢',
+    icon: Building,
     riskLevel: 2,
     description: 'Real estate investment trusts',
   },
   'skill': {
     label: 'Skills',
-    emoji: '🧠',
+    icon: Brain,
     riskLevel: 3,
     description: 'Fastest return on investment',
   },
   'online-biz': {
     label: 'Online Business',
-    emoji: '💻',
+    icon: Laptop,
     riskLevel: 4,
     description: 'Dropshipping, digital products',
   },
   'stock': {
     label: 'Individual Stocks',
-    emoji: '📈',
+    icon: LineChart,
     riskLevel: 4,
     description: 'Picking individual companies',
   },
   'crypto': {
     label: 'Crypto',
-    emoji: '₿',
+    icon: Bitcoin,
     riskLevel: 5,
     description: 'Bitcoin, Ethereum, etc.',
   },
   'alternative': {
     label: 'Alternatives',
-    emoji: '🎨',
+    icon: Palette,
     riskLevel: 5,
     description: 'Gold, wine, sneakers, NFTs',
   },
