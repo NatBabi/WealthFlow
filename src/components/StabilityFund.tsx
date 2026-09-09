@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import { useApp } from '@/lib/store';
 import { formatCurrency } from '@/lib/utils';
+import { Shield, Coins, Zap, Lock, TrendingUp, ClipboardList, Package, Trash2, Home, ShoppingCart, Lightbulb, Car, Umbrella, Wifi, Activity } from 'lucide-react';
 
 export default function StabilityFund() {
   const { state, dispatch } = useApp();
@@ -32,14 +33,14 @@ export default function StabilityFund() {
   const isFunded = progress >= 100;
 
   const expenseCategories = [
-    { value: 'housing', label: '🏠 Rent / Mortgage' },
-    { value: 'groceries', label: '🛒 Groceries' },
-    { value: 'utilities', label: '💡 Utilities' },
-    { value: 'transport', label: '🚗 Transportation' },
-    { value: 'insurance', label: '🛡️ Insurance' },
-    { value: 'internet', label: '📡 Internet' },
-    { value: 'healthcare', label: '🏥 Healthcare' },
-    { value: 'other', label: '📦 Other Essential' },
+    { value: 'housing', label: 'Rent / Mortgage', icon: <Home className="w-4 h-4" /> },
+    { value: 'groceries', label: 'Groceries', icon: <ShoppingCart className="w-4 h-4" /> },
+    { value: 'utilities', label: 'Utilities', icon: <Lightbulb className="w-4 h-4" /> },
+    { value: 'transport', label: 'Transportation', icon: <Car className="w-4 h-4" /> },
+    { value: 'insurance', label: 'Insurance', icon: <Umbrella className="w-4 h-4" /> },
+    { value: 'internet', label: 'Internet', icon: <Wifi className="w-4 h-4" /> },
+    { value: 'healthcare', label: 'Healthcare', icon: <Activity className="w-4 h-4" /> },
+    { value: 'other', label: 'Other Essential', icon: <Package className="w-4 h-4" /> },
   ];
 
   const handleAddExpense = () => {
@@ -70,7 +71,7 @@ export default function StabilityFund() {
       <div className="page-header">
         <div className="page-header-content">
           <div>
-            <h1 className="page-title">🛡️ Stability Fund</h1>
+            <h1 className="page-title flex items-center gap-2"><Shield className="w-8 h-8 text-[#6366f1]" /> Stability Fund</h1>
             <p className="page-subtitle">15% of income — Keeps you in the game</p>
           </div>
           <div style={{ textAlign: 'right' }}>
@@ -121,8 +122,8 @@ export default function StabilityFund() {
           </div>
 
           <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
-            <button className="btn btn-primary" onClick={() => setShowDeposit(!showDeposit)}>
-              {showDeposit ? '✕ Cancel' : '💰 Deposit'}
+            <button className="btn btn-primary flex items-center gap-2" onClick={() => setShowDeposit(!showDeposit)}>
+              {showDeposit ? '✕ Cancel' : <><Coins className="w-4 h-4" /> Deposit</>}
             </button>
             {stabilityFund.currentAmount > 0 && (
               <button className="btn btn-secondary" onClick={() => {
@@ -156,12 +157,12 @@ export default function StabilityFund() {
         {/* The 3 Rules */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '24px' }}>
           {[
-            { emoji: '⚡', title: 'Easy to Access', desc: 'Available within 24 hours. Don\'t lock it up in penalty accounts.' },
-            { emoji: '🔒', title: 'Zero Risk', desc: 'Never invest this in stocks or crypto. When emergency hits, market might be down.' },
-            { emoji: '💹', title: 'Always Earning', desc: 'Use a high-yield savings account (4-5% interest). Don\'t let inflation eat it.' },
+            { icon: <Zap className="w-8 h-8 mx-auto" />, title: 'Easy to Access', desc: 'Available within 24 hours. Don\'t lock it up in penalty accounts.' },
+            { icon: <Lock className="w-8 h-8 mx-auto" />, title: 'Zero Risk', desc: 'Never invest this in stocks or crypto. When emergency hits, market might be down.' },
+            { icon: <TrendingUp className="w-8 h-8 mx-auto" />, title: 'Always Earning', desc: 'Use a high-yield savings account (4-5% interest). Don\'t let inflation eat it.' },
           ].map((rule, i) => (
             <div key={i} className="card" style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2rem', marginBottom: '8px' }}>{rule.emoji}</div>
+              <div style={{ marginBottom: '8px', color: 'var(--stability)' }}>{rule.icon}</div>
               <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '6px' }}>{rule.title}</div>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', lineHeight: 1.5 }}>{rule.desc}</div>
             </div>
@@ -205,7 +206,7 @@ export default function StabilityFund() {
 
           {stabilityFund.expenses.length === 0 ? (
             <div className="empty-state">
-              <div className="empty-state-icon">📋</div>
+              <div className="empty-state-icon"><ClipboardList className="w-8 h-8 opacity-50" /></div>
               <div className="empty-state-title">List your core expenses</div>
               <div className="empty-state-text">
                 Add groceries, rent, utilities, transport, and essential services. This calculates your monthly baseline for the 5-month safety net.
@@ -218,17 +219,17 @@ export default function StabilityFund() {
                 return (
                   <div key={expense.id} className="transaction-item">
                     <div className="transaction-icon" style={{ background: 'var(--stability-dim)', color: 'var(--stability)' }}>
-                      {catInfo?.label.split(' ')[0] || '📦'}
+                      {catInfo?.icon || <Package className="w-4 h-4" />}
                     </div>
                     <div className="transaction-details">
                       <div className="transaction-name">{expense.name}</div>
-                      <div className="transaction-category">{catInfo?.label.split(' ').slice(1).join(' ') || expense.category}</div>
+                      <div className="transaction-category">{catInfo?.label || expense.category}</div>
                     </div>
                     <div className="transaction-amount" style={{ color: 'var(--text-primary)' }}>
                       {formatCurrency(expense.amount, sym)}/mo
                     </div>
                     <button className="btn btn-sm btn-ghost" onClick={() => dispatch({ type: 'DELETE_CORE_EXPENSE', payload: expense.id })}>
-                      🗑️
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 );
@@ -258,7 +259,7 @@ export default function StabilityFund() {
         {/* Stacking Tactics */}
         <div className="card">
           <div className="card-header">
-            <span className="card-title">⚡ Stack It Quickly — 3 Tactics</span>
+            <span className="card-title flex items-center gap-2"><Zap className="w-5 h-5 text-yellow-400" /> Stack It Quickly — 3 Tactics</span>
           </div>
           <div style={{ display: 'grid', gap: '16px' }}>
             {[
