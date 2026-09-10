@@ -10,7 +10,19 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        wealth: {
+          red: "var(--danger)",
+          cream: "var(--bg-primary)",
+          dark: "var(--text-primary)",
+          gray: "var(--text-secondary)",
+          card: "var(--bg-card)"
+        }
       },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        playfair: ['var(--font-playfair)', 'serif'],
+        mono: ['var(--font-mono)', 'monospace'],
+      }
     },
   },
   plugins: [],
