@@ -2,7 +2,16 @@
 // WealthFlow — Utility Functions
 // ============================================
 
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { CompoundGrowthResult } from './types';
+
+/**
+ * Utility to merge tailwind classes
+ */
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 /**
  * Generate a unique ID
