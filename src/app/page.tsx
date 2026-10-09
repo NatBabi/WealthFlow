@@ -13,12 +13,9 @@ import ImpulseDecisionTree from '@/components/ImpulseDecisionTree';
 import Insights from '@/components/Insights';
 import Settings from '@/components/Settings';
 
-import LandingPage from '@/components/LandingPage';
-
 export default function Home() {
   const { state } = useApp();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [showSetup, setShowSetup] = useState(false);
 
   // Still loading from localStorage
   if (!state.isLoaded) {
@@ -31,9 +28,6 @@ export default function Home() {
 
   // Not set up yet
   if (!state.user.isSetupComplete) {
-    if (!showSetup) {
-      return <LandingPage onGetStarted={() => setShowSetup(true)} />;
-    }
     return (
       <main className="app-container" style={{ background: 'var(--bg-primary)' }}>
         <SetupWizard />
