@@ -1465,3 +1465,7 @@ body {
   background: var(--growth-dim);
   color: var(--text-primary);
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

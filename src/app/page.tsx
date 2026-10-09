@@ -12,10 +12,12 @@ import JoyJar from '@/components/JoyJar';
 import ImpulseDecisionTree from '@/components/ImpulseDecisionTree';
 import Insights from '@/components/Insights';
 import Settings from '@/components/Settings';
+import LandingPage from '@/components/LandingPage';
 
 export default function Home() {
   const { state } = useApp();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
 
   // Still loading from localStorage
   if (!state.isLoaded) {
@@ -28,6 +30,9 @@ export default function Home() {
 
   // Not set up yet
   if (!state.user.isSetupComplete) {
+    if (showLanding) {
+      return <LandingPage onEnter={() => setShowLanding(false)} />;
+    }
     return (
       <main className="app-container" style={{ background: 'var(--bg-primary)' }}>
         <SetupWizard />
