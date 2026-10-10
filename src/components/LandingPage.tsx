@@ -37,7 +37,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
             </h1>
             
             <p className="mt-8 sm:mt-12 text-sm md:text-base text-wealth-gray max-w-md font-normal leading-relaxed">
-              A meticulously curated framework introducing influential habits and essential financial structures. Escape the gravity of living paycheck to paycheck through the 25/15/50/10 rule.
+              We built a framework for financial structure. Break the cycle. The 25/15/50/10 rule works.
             </p>
 
             {/* Unified CTA: button + arrow as a single interactive row */}
@@ -112,6 +112,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
       </div>
 
       <section className="px-6 sm:px-8 md:px-16 py-24 md:py-32 max-w-[1440px] mx-auto border-t border-wealth-dark/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           
           {/* Left side: The Manifesto */}
           <div>
@@ -121,15 +122,15 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
             <div className="space-y-10 text-wealth-gray font-normal text-sm md:text-base leading-relaxed">
               <div>
                 <strong className="text-wealth-dark font-normal tracking-wide uppercase text-xs block mb-3">What it is for</strong>
-                <p>The 25/15/50/10 system is engineered for one purpose: escape velocity. It is a mathematical framework designed to break the modern slavery of living paycheck to paycheck, allowing you to build aggressive wealth while permanently insulating yourself from financial shocks.</p>
+                <p>Built for one purpose: escape velocity. A mathematical framework to build wealth. It insulates you from financial shocks.</p>
               </div>
               <div>
                 <strong className="text-wealth-dark font-normal tracking-wide uppercase text-xs block mb-3">Why it is effective</strong>
-                <p>It relies on automated discipline rather than human willpower. By pre-allocating your capital into strict percentage buckets the exact moment you are paid, it removes the emotional friction from financial decisions. The math works identically regardless of your income level.</p>
+                <p>It relies on automated discipline. Pre-allocate capital into strict buckets. The math works for any income.</p>
               </div>
               <div>
                 <strong className="text-wealth-dark font-normal tracking-wide uppercase text-xs block mb-3">What it doesn't do</strong>
-                <p>It does not micromanage your morning coffee. It does not demand extreme, miserable frugality. It is an anti-budget that manages ratios, not receipts. As long as your lifestyle fits inside the 50% bucket, the rest of your wealth essentially builds itself.</p>
+                <p>We manage ratios, not receipts. Keep your lifestyle inside the 50% bucket. The rest builds itself.</p>
               </div>
             </div>
           </div>
@@ -142,7 +143,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <span className="font-sans text-4xl font-normal text-wealth-dark">25%</span>
                 <span className="text-xs uppercase tracking-widest font-normal text-wealth-dark/80">Growth</span>
               </div>
-              <p className="text-sm text-wealth-gray leading-relaxed">Your economic engine. Aggressively routed into investments, index funds, and assets that compound silently while you sleep.</p>
+              <p className="text-sm text-wealth-gray leading-relaxed">Your economic engine. Routed into assets that compound silently.</p>
             </div>
 
             <div className="border-l border-wealth-dark/10 pl-6 hover:border-wealth-dark/30 hover:translate-x-2 transition-all duration-300">
@@ -150,7 +151,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <span className="font-sans text-4xl font-normal text-wealth-dark">15%</span>
                 <span className="text-xs uppercase tracking-widest font-normal text-wealth-dark/60">Stability</span>
               </div>
-              <p className="text-sm text-wealth-gray leading-relaxed">Your fortress. A highly liquid emergency fund built to cover 5 months of total runway. Zero risk, always accessible.</p>
+              <p className="text-sm text-wealth-gray leading-relaxed">Your fortress. A liquid emergency fund for 5 months of runway.</p>
             </div>
 
             <div className="border-l border-wealth-dark/10 pl-6 hover:border-wealth-dark/30 hover:translate-x-2 transition-all duration-300">
@@ -158,7 +159,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <span className="font-sans text-4xl font-normal text-wealth-dark">50%</span>
                 <span className="text-xs uppercase tracking-widest font-normal text-wealth-dark/60">Essentials</span>
               </div>
-              <p className="text-sm text-wealth-gray leading-relaxed">The strict cap on your lifestyle. Rent, groceries, transport, and utilities must fit here. If they don't, you are living above your station.</p>
+              <p className="text-sm text-wealth-gray leading-relaxed">The strict cap on your lifestyle. Rent and utilities must fit here.</p>
             </div>
 
             <div className="border-l border-wealth-dark/10 pl-6 hover:border-wealth-dark/30 hover:translate-x-2 transition-all duration-300">
@@ -166,7 +167,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
                 <span className="font-sans text-4xl font-normal text-wealth-dark">10%</span>
                 <span className="text-xs uppercase tracking-widest font-normal text-wealth-dark/60">Rewards</span>
               </div>
-              <p className="text-sm text-wealth-gray leading-relaxed">Guilt-free joy. Experiences, dining, and luxury. Because wealth building without actually living feels like a punishment.</p>
+              <p className="text-sm text-wealth-gray leading-relaxed">Guilt-free joy. Experiences and dining. Because wealth building should not be a punishment.</p>
             </div>
 
           </div>
@@ -186,7 +187,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
             </svg>
           </div>
           <h2 className="font-sans text-3xl md:text-5xl leading-tight font-normal mb-6 tracking-tight">
-            "If you don't own something, you are what's owned."
+            &quot;If you don&apos;t own something, you are what&apos;s owned.&quot;
           </h2>
           <p className="text-wealth-gray text-sm md:text-base font-normal tracking-wide">
             The richest people are 75% entrepreneurs, 15% investors, 7% inheritors, 3% artists — 0% salary employees.
@@ -208,8 +209,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
               A philosophy requires a <span className="text-wealth-gray">control center.</span>
             </h2>
             <p className="text-wealth-gray font-normal text-sm md:text-base leading-relaxed mb-8">
-              WealthFlow isn't just a spreadsheet. It is a beautifully engineered, client-side dashboard that maps your exact income to the 25/15/50/10 blueprint. 
-              Track your allocations, measure your Wealth Score, and log transactions without your financial data ever leaving your device.
+              More than a spreadsheet. A dashboard that stays on your device. Track allocations and measure your Wealth Score.
             </p>
             <ul className="space-y-4">
               <li className="flex items-start gap-4">
