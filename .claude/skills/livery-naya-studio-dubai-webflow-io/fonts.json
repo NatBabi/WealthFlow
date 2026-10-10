@@ -1,0 +1,14 @@
+[
+  {
+    "family": "Helvetica Neue",
+    "roles": [
+      "body",
+      "display"
+    ],
+    "licence": "licence_required",
+    "licenceName": "Commercial (Monotype)",
+    "install": null,
+    "alternative": "Inter",
+    "note": "Use only with your own licence. Otherwise use Inter."
+  }
+]
