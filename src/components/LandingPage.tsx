@@ -108,9 +108,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
         </div>
       </div>
 
-      {/* PERSUASIVE INFO SECTION */}
-      <section className="px-6 sm:px-8 md:px-16 py-24 md:py-32 max-w-7xl mx-auto border-t border-wealth-dark/10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+      <section className="px-6 sm:px-8 md:px-16 py-24 md:py-32 max-w-[1440px] mx-auto border-t border-wealth-dark/10">
           
           {/* Left side: The Manifesto */}
           <div>
@@ -188,7 +186,7 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
       </section>
 
       {/* THE TOOL / EXPERIENCE SECTION */}
-      <section className="px-6 sm:px-8 md:px-16 py-24 md:py-32 max-w-7xl mx-auto border-b border-wealth-dark/10">
+      <section className="px-6 sm:px-8 md:px-16 py-24 md:py-32 max-w-[1440px] mx-auto border-b border-wealth-dark/10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left: Software copy */}
