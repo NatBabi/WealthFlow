@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "var(--bg-primary)",
+        foreground: "var(--text-primary)",
         wealth: {
           red: "var(--danger)",
           cream: "var(--bg-primary)",
@@ -19,8 +19,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
-        playfair: ['var(--font-playfair)', 'serif'],
+        sans: ['var(--font-sans)', 'sans-serif'],
+        playfair: ['var(--font-sans)', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
       }
     },
