@@ -80,7 +80,10 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
           </div>
           
           {/* Floating Data Card */}
-          <div className="absolute bottom-6 sm:bottom-12 md:bottom-16 left-4 sm:left-8 bg-transparent border border-wealth-dark/20 p-5 sm:p-8 rounded-[29px] max-w-[260px] sm:max-w-xs transition-transform duration-700 hover:-translate-y-2 z-20 backdrop-blur-md">
+          <div 
+            className="absolute bottom-6 sm:bottom-12 md:bottom-16 left-4 sm:left-8 bg-transparent border border-wealth-dark/20 p-5 sm:p-8 rounded-[29px] max-w-[260px] sm:max-w-xs transition-transform duration-700 hover:-translate-y-2 z-20 backdrop-blur-md"
+            style={{ animation: 'floatUp 2000ms linear infinite' }}
+          >
             <div className="flex justify-between items-start mb-4 sm:mb-6">
               <h3 className="font-sans text-lg sm:text-xl font-normal tracking-tight text-wealth-dark">The Blueprint</h3>
               <span className="text-[10px] sm:text-xs font-mono text-wealth-gray ml-3">25/15/50/10</span>
@@ -174,7 +177,13 @@ export default function LandingPage({ onEnter }: { onEnter: () => void }) {
       <section className="px-6 sm:px-8 md:px-16 py-24 md:py-32 bg-transparent text-wealth-dark border-y border-wealth-dark/10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex justify-center mb-8 text-wealth-dark/40">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+              <path 
+                className="draw" 
+                style={{ '--path-length': '80' } as React.CSSProperties} 
+                d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"
+              />
+            </svg>
           </div>
           <h2 className="font-sans text-3xl md:text-5xl leading-tight font-normal mb-6 tracking-tight">
             "If you don't own something, you are what's owned."
