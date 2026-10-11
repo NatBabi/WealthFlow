@@ -1,9 +1,26 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# WealthFlow Design Rules (Naya Studio Dubai v1)
 
-## This is NOT the Next.js you know
+This project adopts the **Naya Studio Dubai** design system (Livery v1). All future UI additions and refactors must adhere to these core rules:
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+## Visual Principles
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+1. **Contrast, Not Colour**
+   - Build visual hierarchy through contrast, font weight, and size. Keep the color palette neutral and near-black (`#0d0d0d` / `#000000`).
+   - Do not introduce arbitrary saturated accent colors; buttons and active elements rely on tone contrast, weight, and subtle borders.
 
-<!-- END:nextjs-agent-rules -->
+2. **Flat Surfaces, Drawn Edges**
+   - **No drop shadows.** Elevation and depth are achieved strictly through 1px borders (`rgba(0,0,0,0.1)` or `rgba(255,255,255,0.1)`) and subtle surface tonal shifts.
+   - Use backdrop blur (`backdrop-blur-md`) and subtle grain overlays for tactile texture.
+
+3. **Single Typography Family & Tight Large Headings**
+   - Single clean sans-serif typography (`Inter` / `Helvetica Neue`).
+   - Headings use tight letter-spacing (`tracking-tighter` / `-0.02em`) and large scale.
+   - Never introduce competing display/serif typefaces.
+
+4. **Rounded and Approachable Contours**
+   - Controls, badges, and CTA buttons use fully rounded pill shapes (`rounded-full`).
+   - Cards and structural containers use generous radii (`rounded-[29px]` or `rounded-[88px]`).
+
+5. **Direct & Calm Voice**
+   - Copy is calm, declarative, and concise (~10 words per heading).
+   - Avoid sales hyperbole, aggressive exclamation points, and wordy explanations.
